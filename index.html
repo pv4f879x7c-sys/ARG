@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>联合速运 - 内部归档</title>
+    <style>
+        body { background-color: #dcdcdc; font-family: 'Courier New', Courier, monospace; text-align: center; padding-top: 50px; }
+        .container { border: 2px outset #eee; background: #e0e0e0; width: 450px; margin: 0 auto; padding: 20px; }
+        input { border: 1px inset #999; padding: 5px; background: #fff; }
+        button { cursor: pointer; border: 1px outset #666; background: #ccc; }
+        #result { margin-top: 20px; text-align: left; display: none; border-top: 1px dotted #666; padding-top: 10px; }
+        
+        /* 恐怖模式样式 */
+        .horror-mode { background-color: #1a1a1a !important; color: #ff0000 !important; }
+        .horror-mode .container { background: #000 !important; border: 2px solid #500 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainBox">
+        <h1 id="titleText">联合速运 - 内部物流追踪</h1>
+        <div id="inputSection">
+            <p>请输入运单号:</p >
+            <input type="text" id="trackingInput">
+            <button onclick="checkTracking()">查询</button>
+        </div>
+        
+        <div id="result">
+            <p>状态: 已签收</p >
+            <p>签收人: [已授权]</p >
+            <a href=" " target="_blank" onclick="showNote()">点击查看附件: 签收回执.jpg</a >
+        </div>
+
+        <div id="measureSection" style="display:none; margin-top: 20px;">
+            <p><strong>[系统校准]</strong> 监测到维度偏差。</p >
+            <p>请输入当前空间的“地砖”数值:</p >
+            <input type="text" id="measureInput">
+            <button onclick="verifyMeasure()">提交校准</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem("hasViewedNote") === "true") {
+                triggerHorror();
+            }
+        };
+
+        function checkTracking() {
+            if (document.getElementById("trackingInput").value === "12345") {
+                document.getElementById("result").style.display = "block";
+            } else {
+                alert("无此单号。");
+            }
+        }
+
+        function showNote() {
+            localStorage.setItem("hasViewedNote", "true");
+        }
+
+        function triggerHorror() {
+            document.body.className = "horror-mode";
+            document.getElementById("titleText").innerText = "你看到了它，对吗？";
+            document.getElementById("measureSection").style.display = "block";
+        }
+
+        function verifyMeasure() {
+            let val = document.getElementById("measureInput").value;
+            alert("校准已录入: " + val + "。正在从您的坐标移除观测权限...");
+        }
+    </script>
+</body>
+</html>
