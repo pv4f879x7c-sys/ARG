@@ -1,0 +1,20 @@
+body {
+    background-color: #dcdcdc; /* 经典的灰白底色 */
+    font-family: "Courier New", Courier, monospace; /* 程序员的打字机字体 */
+    color: #333;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.container {
+    border: 1px solid #999;
+    background: #f0f0f0;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+input {
+    border: 1px inset #666;
+    padding: 5px;
+}
